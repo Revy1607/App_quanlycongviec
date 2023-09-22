@@ -15,11 +15,19 @@
             android:layout_height="wrap_content"/>
         <EditText
             android:layout_margin="20dp"
+            android:id="@+id/editTitleTextTask"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Tiêu đề công việc"
+            android:layout_below="@+id/datePickerTask" />
+
+        <EditText
+            android:layout_margin="20dp"
             android:id="@+id/editTextTask"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Nội dung công việc"
-            android:layout_below="@+id/datePickerTask" />
+            android:layout_below="@+id/editTitleTextTask" />
         <Button
             android:layout_marginTop="20dp"
             android:id="@+id/buttonSave"

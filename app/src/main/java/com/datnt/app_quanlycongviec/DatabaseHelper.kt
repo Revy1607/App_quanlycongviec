@@ -4,17 +4,16 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import android.icu.number.IntegerWidth
 
 class DatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
     companion object{
-        private const val DATABASE_NAME = "tasksDB"
-        private const val DATABASE_VERSION = 1
-        private const val TABLE_NAME = "taskTBL"
-        private const val ID = "id"
-        private const val TASK_NAME = "task_name"
-        private const val TASK_DETAILS = "task_details"
-        private const val TASK_TIME = "task_time"
+        const val DATABASE_NAME = "tasksDB"
+        const val DATABASE_VERSION = 1
+        const val TABLE_NAME = "taskTBL"
+        const val ID = "id"
+        const val TASK_NAME = "task_name"
+        const val TASK_DETAILS = "task_details"
+        const val TASK_TIME = "task_time"
     }
 
     //Tảo bảng
