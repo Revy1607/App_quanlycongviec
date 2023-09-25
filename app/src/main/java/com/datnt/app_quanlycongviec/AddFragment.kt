@@ -10,6 +10,7 @@ import android.widget.Button
 import android.widget.DatePicker
 import android.widget.EditText
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -57,6 +58,7 @@ class AddFragment : Fragment() {
 
             if (uri != null) {
                 Toast.makeText(requireContext(), "Add task success", Toast.LENGTH_LONG).show()
+                findNavController().navigate(R.id.action_addFragment_to_listTaskFragment)
             } else {
                 Toast.makeText(requireContext(), "Add task fail", Toast.LENGTH_LONG).show()
             }

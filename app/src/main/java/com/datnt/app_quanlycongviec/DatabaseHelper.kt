@@ -5,11 +5,10 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
-class DatabaseHelper(context: Context) :
-    SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
+class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
     companion object {
         const val DATABASE_NAME = "tasksDB"
-        const val DATABASE_VERSION = 1
+        const val DATABASE_VERSION = 2
         const val TABLE_NAME = "taskTBL"
         const val ID = "id"
         const val TASK_NAME = "task_name"
@@ -19,8 +18,7 @@ class DatabaseHelper(context: Context) :
 
     //Tảo bảng
     override fun onCreate(db: SQLiteDatabase?) {
-        val createTbl =
-            "CREATE TABLE $TABLE_NAME ($ID INTEGER PRIMARY KEY, $TASK_NAME TEXT, $TASK_DETAILS TEXT, $TASK_TIME TEXT)"
+        val createTbl = "CREATE TABLE $TABLE_NAME ($ID INTEGER PRIMARY KEY AUTOINCREMENT, $TASK_NAME TEXT, $TASK_DETAILS TEXT, $TASK_TIME TEXT)"
         db?.execSQL(createTbl)
     }
 

@@ -61,7 +61,7 @@ class TaskContentProvider : ContentProvider() {
             TASK ->{
                 val id = db.insert(DatabaseHelper.TABLE_NAME, null, p1)
                 if(id > 0){
-                    val uris = ContentUris.withAppendedId(contentUri, id)
+                    val uris = ContentUris.withAppendedId(TaskContentProvider.contentUri, id)
                     context?.contentResolver?.notifyChange(p0, null)
                     return uris
                 } else {
