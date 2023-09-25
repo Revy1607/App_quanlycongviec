@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav"
+    app:startDestination="@id/listTaskFragment">
+
+    <fragment
+        android:id="@+id/addFragment"
+        android:name="com.datnt.app_quanlycongviec.AddFragment"
+        android:label="fragment_add"
+        tools:layout="@layout/fragment_add" >
+        <action
+            android:id="@+id/action_addFragment_to_listTaskFragment"
+            app:destination="@id/listTaskFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/listTaskFragment"
+        android:name="com.datnt.app_quanlycongviec.ListTaskFragment"
+        android:label="fragment_list_task"
+        tools:layout="@layout/fragment_list_task" >
+        <action
+            android:id="@+id/action_listTaskFragment_to_addFragment"
+            app:destination="@id/addFragment" />
+    </fragment>
+</navigation>
