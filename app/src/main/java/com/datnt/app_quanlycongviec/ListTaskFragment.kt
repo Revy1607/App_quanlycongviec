@@ -5,10 +5,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
+import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.WorkManager
+import androidx.work.WorkRequest
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import java.util.Calendar
+import java.util.concurrent.TimeUnit
 
 
 class ListTaskFragment : Fragment() {
@@ -38,6 +44,12 @@ class ListTaskFragment : Fragment() {
         btnAdd?.setOnClickListener {
             findNavController().navigate(R.id.action_listTaskFragment_to_addFragment)
         }
+
+        taskAdapter?.onClickItemRemove = {
+            array.removeAt(it)
+            taskAdapter?.notifyDataSetChanged()
+            Toast.makeText(requireContext(),"Xóa thành công", Toast.LENGTH_LONG).show()
+        }
         return view
     }
 
@@ -64,5 +76,4 @@ class ListTaskFragment : Fragment() {
         }
         cursor?.close()
     }
-
 }

@@ -73,11 +73,33 @@ class TaskContentProvider : ContentProvider() {
     }
 
     override fun delete(p0: Uri, p1: String?, p2: Array<out String>?): Int {
-        TODO("Not yet implemented")
+        val db = databaseHelper.writableDatabase
+
+        return when(uriMatcher.match(p0)){
+            TASK ->{
+                val rowsDeleted = db.delete(DatabaseHelper.TABLE_NAME, p1, p2)
+                if(rowsDeleted > 0){
+                    context?.contentResolver?.notifyChange(p0, null)
+                }
+                rowsDeleted
+            }
+            else -> throw IllegalArgumentException("Unknown URI: $p0")
+        }
     }
 
     override fun update(p0: Uri, p1: ContentValues?, p2: String?, p3: Array<out String>?): Int {
-        TODO("Not yet implemented")
+        val db = databaseHelper.writableDatabase
+
+        return when(uriMatcher.match(p0)){
+            TASK ->{
+                val rowsUpdate = db.update(DatabaseHelper.TABLE_NAME, p1, p2, p3)
+                if(rowsUpdate > 0){
+                    context?.contentResolver?.notifyChange(p0, null)
+                }
+                rowsUpdate
+            }
+            else -> throw  IllegalArgumentException("Unknown URI: $p0")
+        }
     }
 
 }
