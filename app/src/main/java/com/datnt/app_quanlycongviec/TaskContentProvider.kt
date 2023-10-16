@@ -11,16 +11,21 @@ import android.net.Uri
 class TaskContentProvider : ContentProvider() {
     private lateinit var databaseHelper: DatabaseHelper
     companion object {
-        private const val AUTHORITY = "com.datnt.app_quanlycongviec.TaskContentProvider"
-        private const val TASK_PATH = "task"
+        private const val AUTHORITY = "com.datnt.app_quanlycongviec"
+        private const val TASK_PATH = "taskTBL"
         private const val TASK = 1
+        private const val TASK_ID = 2
         val contentUri: Uri = Uri.parse("content://$AUTHORITY/$TASK_PATH")
-        private val uriMatcher = UriMatcher(UriMatcher.NO_MATCH)
+
+    }
+    private val uriMatcher = UriMatcher(UriMatcher.NO_MATCH).apply {
+        addURI(AUTHORITY, TASK_PATH, TASK)
+        addURI(AUTHORITY, "$TASK_PATH/#", TASK_ID)
     }
 
 
     override fun onCreate(): Boolean {
-        uriMatcher.addURI(AUTHORITY, TASK_PATH, TASK)
+
         databaseHelper = DatabaseHelper(context!!)
         return true
     }
@@ -73,11 +78,33 @@ class TaskContentProvider : ContentProvider() {
     }
 
     override fun delete(p0: Uri, p1: String?, p2: Array<out String>?): Int {
-        TODO("Not yet implemented")
+        val db = databaseHelper.writableDatabase
+
+        return when(uriMatcher.match(p0)){
+            TASK ->{
+                val rowsDeleted = db.delete(DatabaseHelper.TABLE_NAME, p1, p2)
+                if(rowsDeleted > 0){
+                    context?.contentResolver?.notifyChange(p0, null)
+                }
+                rowsDeleted
+            }
+            else -> throw IllegalArgumentException("Unknown URI: $p0")
+        }
     }
 
     override fun update(p0: Uri, p1: ContentValues?, p2: String?, p3: Array<out String>?): Int {
-        TODO("Not yet implemented")
+        val db = databaseHelper.writableDatabase
+
+        return when(uriMatcher.match(p0)){
+            TASK ->{
+                val rowsUpdate = db.update(DatabaseHelper.TABLE_NAME, p1, p2, p3)
+                if(rowsUpdate > 0){
+                    context?.contentResolver?.notifyChange(p0, null)
+                }
+                rowsUpdate
+            }
+            else -> throw  IllegalArgumentException("Unknown URI: $p0")
+        }
     }
 
 }

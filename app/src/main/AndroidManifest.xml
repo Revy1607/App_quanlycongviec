@@ -2,8 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <permission android:name="com.datnt.app_quanlycongviec.READ_DATABASE" android:protectionLevel="normal" />
+    <permission android:name="com.datnt.app_quanlycongviec.WRITE_DATABASE" android:protectionLevel="normal" />
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -23,10 +26,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <service
+            android:name=".NotificationTask"
+            android:exported="false"
+            android:permission="android.permission.BIND_JOB_SERVICE">
+            <intent-filter>
+                <action android:name="androidx.work.impl.background.systemjob.SystemJobService" />
+            </intent-filter>
+        </service>
         
         <provider
             android:authorities="com.datnt.app_quanlycongviec.TaskContentProvider"
             android:name=".TaskContentProvider"
+            android:readPermission="com.datnt.app_quanlycongviec.READ_DATABASE"
+            android:writePermission="com.datnt.app_quanlycongviec.WRITE_DATABASE"
             android:exported="false"/>
     </application>
 
