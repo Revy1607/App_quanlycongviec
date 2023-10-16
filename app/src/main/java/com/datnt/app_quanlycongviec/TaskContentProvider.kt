@@ -11,7 +11,7 @@ import android.net.Uri
 class TaskContentProvider : ContentProvider() {
     private lateinit var databaseHelper: DatabaseHelper
     companion object {
-        private const val AUTHORITY = "com.datnt.app_quanlycongviec"
+        private const val AUTHORITY = "com.datnt.app_quanlycongviec.TaskContentProvider"
         private const val TASK_PATH = "taskTBL"
         private const val TASK = 1
         private const val TASK_ID = 2
