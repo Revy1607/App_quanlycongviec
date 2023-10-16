@@ -22,7 +22,6 @@ class TaskContentProvider : ContentProvider() {
         addURI(AUTHORITY, "$TASK_PATH/#", TASK_ID)
     }
 
-
     override fun onCreate(): Boolean {
 
         databaseHelper = DatabaseHelper(context!!)
