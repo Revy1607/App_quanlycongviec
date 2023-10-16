@@ -16,7 +16,6 @@ class TaskContentProvider : ContentProvider() {
         private const val TASK = 1
         private const val TASK_ID = 2
         val contentUri: Uri = Uri.parse("content://$AUTHORITY/$TASK_PATH")
-
     }
     private val uriMatcher = UriMatcher(UriMatcher.NO_MATCH).apply {
         addURI(AUTHORITY, TASK_PATH, TASK)
