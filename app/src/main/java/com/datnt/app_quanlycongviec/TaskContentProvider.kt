@@ -89,7 +89,6 @@ class TaskContentProvider : ContentProvider() {
             else -> throw IllegalArgumentException("Unknown URI: $p0")
         }
     }
-
     override fun update(p0: Uri, p1: ContentValues?, p2: String?, p3: Array<out String>?): Int {
         val db = databaseHelper.writableDatabase
 
